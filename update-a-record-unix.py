@@ -75,8 +75,8 @@ def read_last_ip(file_path):
 def write_current_ip(file_path, ip):
     last_ip_date = None
     try:
-        with open(file_path, 'r') as file:
-            last_line = list(file)[-1]
+        with open(file_path, 'rb') as file:
+            last_line = list(file)[-1].decode()
             last_ip_date = datetime.strptime(last_line.split()[1], "%Y-%m-%d")
     except (IOError, IndexError, ValueError):
         pass
@@ -84,8 +84,8 @@ def write_current_ip(file_path, ip):
     current_date = datetime.now()
     days_passed = (current_date - last_ip_date).days if last_ip_date else 0
 
-    with open(file_path, 'a') as file:
-        file.write(f"{ip} {current_date.strftime('%Y-%m-%d')} {days_passed}\n")
+    with open(file_path, 'ab') as file:
+        file.write(f"{ip} {current_date.strftime('%Y-%m-%d')} {days_passed}\r\n".encode())
 
 def main():
     ip_file = 'current_ip.txt'
