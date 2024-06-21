@@ -69,3 +69,12 @@ Update the task
 # In short you will find the file `current_ip.txt` on the home directory, for me is `/home/pi` and not inside the git repo root folder `cloudflare-dynamic-dns-updater`
 */1 * * * * source /home/pi/.bashrc; /usr/bin/python3 /home/pi/cloudflare-dynamic-dns-updater/update-a-record-unix.py
 ```
+
+If everything above was done correctly, you should have the list of ip's the date and how long was up for
+
+```bash
+cat current_ip.txt
+123.18.119.145 2024-06-21 0
+69.18.6.243 2024-06-21 0
+106.21.10.29 2024-06-22 1
+```
