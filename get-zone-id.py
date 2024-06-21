@@ -14,6 +14,7 @@ This script is meant to be run when you need to fetch the Zone ID for a domain. 
 """
 
 from dotenv import load_dotenv
+load_dotenv()
 import os
 import requests
 

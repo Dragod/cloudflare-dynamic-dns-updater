@@ -23,6 +23,7 @@ A common use case is to run this script as a cron job on a server to keep a dyna
 """
 
 from dotenv import load_dotenv
+load_dotenv()
 import requests
 import os
 import subprocess

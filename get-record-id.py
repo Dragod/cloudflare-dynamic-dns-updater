@@ -15,6 +15,7 @@ This script is meant to be run when you need to fetch the Record ID for a DNS re
 """
 
 from dotenv import load_dotenv
+load_dotenv()
 import requests
 import os
 

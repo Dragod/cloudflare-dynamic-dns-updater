@@ -21,6 +21,7 @@ This script is meant to be run periodically, to keep the A record in Cloudflare 
 A common use case is to run this script as a cron job on a server to keep a dynamic DNS record updated.
 """
 from dotenv import load_dotenv
+load_dotenv()
 from datetime import datetime
 import requests
 import os
