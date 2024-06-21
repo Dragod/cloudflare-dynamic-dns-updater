@@ -21,6 +21,7 @@ This script is meant to be run periodically, to keep the A record in Cloudflare 
 A common use case is to run this script as a cron job on a server to keep a dynamic DNS record updated.
 """
 from dotenv import load_dotenv
+from datetime import datetime
 import requests
 import os
 
@@ -70,10 +71,21 @@ def read_last_ip(file_path):
             return file.read().strip()
     return None
 
-# Function to write the current IP address to a file
+# Function to write the current IP address and the number of days since the last IP change to a file
 def write_current_ip(file_path, ip):
-    with open(file_path, 'w') as file:
-        file.write(ip)
+    last_ip_date = None
+    try:
+        with open(file_path, 'r') as file:
+            last_line = list(file)[-1]
+            last_ip_date = datetime.strptime(last_line.split()[1], "%Y-%m-%d")
+    except (IOError, IndexError, ValueError):
+        pass
+
+    current_date = datetime.now()
+    days_passed = (current_date - last_ip_date).days if last_ip_date else 0
+
+    with open(file_path, 'a') as file:
+        file.write(f"{ip} {current_date.strftime('%Y-%m-%d')} {days_passed}\n")
 
 def main():
     ip_file = 'current_ip.txt'
