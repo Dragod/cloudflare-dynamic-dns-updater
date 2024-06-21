@@ -1,19 +1,34 @@
-# Update A record
+# Cloudflare DNS Management Scripts
 
-Update all the subdomain of a given domain to point to the current isp ip address on the "A" record on cloudflare DNS
-Really handy to keep localhost docker container up 24/7 without a static IP address
+This repository contains three Python scripts that interact with the Cloudflare API to manage DNS records:
 
-## Script run order
+1. `get-zone-id.py`: Fetches the Zone ID for a given domain.
+2. `get-record-id.py`: Fetches the Record ID for a given DNS record.
+3. `update-a-record.py`: Updates a wildcard A record with the current public IP address of the machine it's run on.
 
-- get-zone-id.py
-- get-record-id.py
-- update-a-record-win/unix.py
+## Environment Variables
+
+These scripts use the following environment variables:
+
+- `API_TOKEN`: Your Cloudflare API token.
+- `ZONE_ID`: The ID of the zone (domain) you want to interact with.
+- `RECORD_ID`: The ID of the DNS record you want to interact with.
+- `RECORD_NAME`: The name of the DNS record you want to interact with.
+
+## Usage
+
+First, set the environment variables with your Cloudflare details. (need to create a .env file in the repo root)
+
+Then, you can run the scripts like this:
 
 ```bash
-# .env file (you need to create it, not in git)
-API_TOKEN = 'apitokenhere'
-ZONE_ID = 'zonedidhere'
-RECORD_ID = 'recordidhere'
-RECORD_NAME = '*'
-DOMAIN = 'domain.com'
+python get-zone-id.py
+python get-record-id.py
+python update-a-record.py
+```
+
+## Requirements
+
+```bash
+pip install requests python-dotenv
 ```
