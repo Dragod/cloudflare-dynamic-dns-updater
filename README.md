@@ -22,9 +22,9 @@ First, set the environment variables with your Cloudflare details. (need to crea
 Then, you can run the scripts like this:
 
 ```bash
-python get-zone-id.py
-python get-record-id.py
-python update-a-record.py
+python get-zone-id.py # need to run once to get zoneid
+python get-record-id.py # need to run onde to get the DNS record id
+python update-a-record.py # Should run every minute on a crontab task
 ```
 
 ## Requirements
