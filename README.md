@@ -65,5 +65,7 @@ source ~/.bashrc
 Update the task
 
 ```bash
+# By default, cron runs scripts from the home directory of the user. If your script is writing to a file using a relative path, it will end up in the home directory, not in the directory where the script is located.
+# In short you will find the file `current_ip.txt` on the home directory, for me is `/home/pi` and not inside the git repo root folder `cloudflare-dynamic-dns-updater`
 */1 * * * * source /home/pi/.bashrc; /usr/bin/python3 /home/pi/cloudflare-dynamic-dns-updater/update-a-record-unix.py
 ```
