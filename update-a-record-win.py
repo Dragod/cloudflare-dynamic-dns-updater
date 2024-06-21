@@ -28,7 +28,7 @@ import os
 import subprocess
 
 # Cloudflare API credentials and details
-API_TOKEN = os
+API_TOKEN = os.getenv('API_TOKEN')
 ZONE_ID = os.getenv('ZONE_ID')
 RECORD_ID = os.getenv('RECORD_ID')  # The ID of the wildcard DNS record you want to update
 RECORD_NAME = os.getenv('RECORD_NAME')  # The wildcard record for subdomains

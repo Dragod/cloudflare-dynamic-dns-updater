@@ -20,13 +20,12 @@ Functions:
 This script is meant to be run periodically, to keep the A record in Cloudflare up-to-date with the machine's current public IP address.
 A common use case is to run this script as a cron job on a server to keep a dynamic DNS record updated.
 """
-
 from dotenv import load_dotenv
 import requests
 import os
 
 # Cloudflare API credentials and details
-API_TOKEN = os
+API_TOKEN = os.getenv('API_TOKEN')
 ZONE_ID = os.getenv('ZONE_ID')
 RECORD_ID = os.getenv('RECORD_ID')  # The ID of the wildcard DNS record you want to update
 RECORD_NAME = os.getenv('RECORD_NAME')  # The wildcard record for subdomains
