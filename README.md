@@ -38,6 +38,7 @@ pip install requests python-dotenv
 ```bash
 # type on terminal
 crontab -e
-# Paste in the editor that did just open (it will run the script every minute to refresh the ip if changed and log)
-*/1 * * * * /usr/bin/python3 /home/pi/cloudflare-dynamic-dns-updater/update-a-record-unix.py >> /home/pi/cloudflare-dynamic-dns-updater/ddns-update.log 2>&1
+# Paste in the editor that did just open
+# Run the script every minute to refresh the ip if changed)
+*/1 * * * * /usr/bin/python3 /home/pi/cloudflare-dynamic-dns-updater/update-a-record-unix.py
 ```
