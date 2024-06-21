@@ -39,6 +39,31 @@ pip install requests python-dotenv
 # type on terminal
 crontab -e
 # Paste in the editor that did just open
-# Run the script every minute to refresh the ip if changed)
+# Run the script every minute to refresh the ip if changed, but this won't update the current_ip.txt
 */1 * * * * /usr/bin/python3 /home/pi/cloudflare-dynamic-dns-updater/update-a-record-unix.py
+```
+
+## How to update the current_ip.txt with crontab
+
+```bash
+# Locate your .bashrc
+nano ~/.bashrc
+
+# Add the following to .bashrc
+export API_TOKEN="your_api_token"
+export ZONE_ID="your_zone_id"
+export RECORD_ID="your_record_id"
+export RECORD_NAME="your_record_name"
+```
+
+Any changes you make to this file will only take effect in new terminal sessions, so you'll need to start a new session or source the .bashrc file in your current session for the changes to take effect:
+
+```bash
+source ~/.bashrc
+```
+
+Update the task
+
+```bash
+*/1 * * * * source /home/pi/.bashrc; /usr/bin/python3 /home/pi/cloudflare-dynamic-dns-updater/update-a-record-unix.py
 ```
