@@ -76,7 +76,11 @@ def write_current_ip(file_path, ip):
     last_ip_date = None
     try:
         with open(file_path, 'rb') as file:
-            last_line = list(file)[-1].decode()
+            lines = file.readlines()
+            for line in lines:
+                if ip in line.decode():
+                    return
+            last_line = lines[-1].decode()
             last_ip_date = datetime.strptime(last_line.split()[1], "%Y-%m-%d")
     except (IOError, IndexError, ValueError):
         pass
